@@ -15,15 +15,16 @@ class App extends Component {
       .then(response => response.json())
       .then(users => this.setState({ monsters: users }));
   } 
-  
+
   getFilteredMonsters() {
-    const { monsters, searchField } = this.state;
-    return monsters.filter(
-      monster => monster.name.toLowerCase().includes(searchField.toLowerCase()) 
-    );
-  } 
+
+  }
 
   render() {
+    const { monsters, searchField } = this.state;
+    const filteredMonsters = monsters.filter( 
+      monster =>  monster.name.toLowerCase().includes(searchField.toLowerCase())
+    );
 
     return (
       <div className='App'>
@@ -31,7 +32,7 @@ class App extends Component {
         type='search' 
         placeholder='search monsters' 
         onChange={e => this.setState({searchField: e.target.value})} />
-        <CardList monsters={getFilteredMonsters()} />
+        <CardList monsters={filteredMonsters} />
       </div>
     );
   } 
